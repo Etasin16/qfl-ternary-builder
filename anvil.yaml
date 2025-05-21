@@ -1,12 +1,17 @@
 allow_embedding: false
 dependencies: []
-name: M3 App 1
-package_name: M3_App_1
+metadata: {description: 'This web application enables geologists and researchers to upload sedimentary rock composition data and automatically plot it on a QFL ternary diagram (Quartz–Feldspar–Lithic fragments). It assists in the classification of sandstones and provides insights into provenance and tectonic settings.  Key Features:  📤 Upload compositional data (CSV, Excel)  📊 Auto-generate QFL ternary diagrams  🧭 Classify samples based on standard sandstone types  🔍 Explore provenance and tectonic implications  📁 Export diagrams and analysis as images or reports  🔐 Optional user login to save and manage datasets  Ideal for geologists, sedimentologists, and students conducting petrographic analysis and tectonic studies', logo_img: 'asset:ElytraLab 511x511.jpg', title: QFL Ternary Builder - By Elytra Lab}
+name: QFL Ternary Builder
+package_name: QFL_Ternary_Builder
 renamed: true
 runtime_options:
   client_version: '3'
   server_spec: {base: python310-minimal}
   server_version: python3-sandbox
   version: 2
-services: []
-startup_form: Form1
+services:
+- client_config: {}
+  server_config: {}
+  source: /runtime/services/tables.yml
+startup: {module: QFL, type: form}
+startup_form: null
