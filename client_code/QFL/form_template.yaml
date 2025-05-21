@@ -45,7 +45,8 @@ components:
       properties: {align: right, bold: true, font_size: 16, text: 'Enter Quartz values separated by commas ( , ) :'}
       type: Label
     - components:
-      - layout_properties: {grid_position: 'FMIVCA,LOPVMH'}
+      - event_bindings: {show: Quartz_show}
+        layout_properties: {grid_position: 'FMIVCA,LOPVMH'}
         name: Quartz
         properties:
           spacing:
@@ -63,7 +64,8 @@ components:
       properties: {align: right, bold: true, font_size: 16, spacing_above: medium, text: 'Enter Feldspar values separated by commas ( , ) :'}
       type: Label
     - components:
-      - layout_properties: {grid_position: 'XZJIXW,XHWYFJ'}
+      - event_bindings: {show: Feldspar_show}
+        layout_properties: {grid_position: 'XZJIXW,XHWYFJ'}
         name: Feldspar
         properties:
           spacing:
@@ -80,7 +82,8 @@ components:
       properties: {align: right, bold: true, font_size: 16, text: 'Enter Lithics values separated by commas ( , ) :'}
       type: Label
     - components:
-      - layout_properties: {grid_position: 'ORGKDW,PVAQAN'}
+      - event_bindings: {show: Lithics_show}
+        layout_properties: {grid_position: 'ORGKDW,PVAQAN'}
         name: Lithics
         properties:
           spacing:
@@ -90,13 +93,31 @@ components:
         type: Label
       layout_properties: {grid_position: 'YYWVPP,IFPPIC'}
       name: outlined_card_7
-      properties: {role: outlined-card, spacing_below: none}
+      properties:
+        role: outlined-card
+        spacing:
+          padding: [10, null, 0, null]
+        spacing_below: none
       type: ColumnPanel
+    - event_bindings: {click: SubmitButton_click}
+      layout_properties: {grid_position: 'FCPHYT,FSRCIL'}
+      name: SubmitButton
+      properties:
+        role: outlined-button
+        spacing:
+          padding: [8, null, null, null]
+        spacing_above: large
+        text: Submit
+      type: Button
     data_bindings: []
     event_bindings: {show: INPUTarea}
     layout_properties: {grid_position: 'UDNIYW,WCOHDF'}
     name: InputArea
-    properties: {role: outlined-card, visible: false}
+    properties:
+      role: outlined-card
+      spacing:
+        padding: [null, null, null, 0]
+      visible: false
     type: ColumnPanel
   layout_properties: {slot: default}
   name: content_panel
