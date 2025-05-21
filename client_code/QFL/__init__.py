@@ -1,11 +1,6 @@
 from ._anvil_designer import QFLTemplate
 from anvil import *
-import pandas as pd
-import matplotlib.pyplot as plt
-import numpy as np
-!pip install mpltern
-import mpltern
-import re
+import requests
 
 class QFL(QFLTemplate):
   def __init__(self, **properties):
