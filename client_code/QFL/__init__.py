@@ -54,6 +54,14 @@ class QFL(QFLTemplate):
       exit()
     print(qList,fList,lList)
     df = anvil.server.call('DataFrm', qList, fList, lList)
-    self.repeating_panel_1.items = df
     print(df)
+    Form1
+    DataGrid (data_grid_1)
+      Columns: Quartz | Feldspar | Lithics
+        RepeatingPanel (default name)
+        Template: RowTemplate1
+             Label -> item['Name']
+             Label -> item['Age']
+              Label -> item['Email']
+    
     
