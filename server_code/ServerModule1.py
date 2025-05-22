@@ -29,6 +29,18 @@ def clean_commas(input_string):
     cleaned_string += char
     prev_char = char
 
-    if cleaned_string.endswith(','):
-      cleaned_string = cleaned_string[:-1]
-      return cleaned_string
+  if cleaned_string.endswith(','):
+    cleaned_string = cleaned_string[:-1]
+  return cleaned_string
+
+@anvil.server.callable
+def DataFrm(d1,d2,d3):
+  # Creating dataframe using inputed data
+  df = pd.DataFrame({'Quartz': d1, 'Feldspar': d2, 'Lithics': d3})
+  # calculation
+  df['Total'] = df['Quartz'] + df['Feldspar'] + df['Lithics']
+  
+  df['%Q'] =  df['Quartz'] / df['Total'] * 100
+  df['%F'] =  df['Feldspar'] / df['Total'] * 100
+  df['%L'] =  df['Lithics'] / df['Total'] * 100
+  return df.to_dict(orient='records')

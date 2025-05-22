@@ -40,4 +40,20 @@ class QFL(QFLTemplate):
     except ValueError:
       print("Invalid input. Please enter numerical values separated by commas.")
       exit()
-    print(fList)
+    if len(qList) != len(fList) or len(qList) != len(lList):
+      print("Maybe some data is missing.")
+      print("Any way, Here's the output with what we have")
+    max_len = min(len(qList), len(fList), len(lList))
+      
+    qList = qList[:max_len]
+    fList = fList[:max_len]
+    lList = lList[:max_len]
+      
+    if not qList or not fList or not lList:
+      print("No valid data entered or uploaded.")
+      exit()
+    print(qList,fList,lList)
+    df = anvil.server.call('DataFrm', qList, fList, lList)
+    self.repeating_panel_1.items = df
+    print(df)
+    
