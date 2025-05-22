@@ -20,6 +20,8 @@ class QFL(QFLTemplate):
 
   def SubmitButton_click(self, **event_args):
     """This method is called when the button is clicked"""
+    self.DATAtable.visible = not self.DATAtable.visible
+    
     AaQ_str = self.Quartz.text
     AaF_str = self.Feldspar.text
     AaL_str = self.Lithics.text
@@ -55,13 +57,9 @@ class QFL(QFLTemplate):
     print(qList,fList,lList)
     df = anvil.server.call('DataFrm', qList, fList, lList)
     print(df)
-    Form1
-    DataGrid (data_grid_1)
-      Columns: Quartz | Feldspar | Lithics
-        RepeatingPanel (default name)
-        Template: RowTemplate1
-             Label -> item['Name']
-             Label -> item['Age']
-              Label -> item['Email']
-    
-    
+    self.repeating_panel_1.items = df
+
+  def DownloadCSV_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    csv_file = anvil.server.call('get_csv_download',df)
+    anvil.media.download(csv_file)

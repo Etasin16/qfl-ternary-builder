@@ -4,6 +4,7 @@ import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
 import anvil.server
+import anvil.media
 import pandas as pd
 import matplotlib.pyplot as plt
 import mpltern
@@ -44,3 +45,9 @@ def DataFrm(d1,d2,d3):
   df['%F'] =  df['Feldspar'] / df['Total'] * 100
   df['%L'] =  df['Lithics'] / df['Total'] * 100
   return df.to_dict(orient='records')
+
+@anvil.server.callable
+def get_csv_download(dss):
+  df=dss
+  csv_str = df.to_csv(index=False)
+  return anvil.media.from_string(csv_str, 'text/csv', name= f"export_{date.today()}.csv")
