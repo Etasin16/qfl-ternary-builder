@@ -41,56 +41,63 @@ components:
     type: ColumnPanel
   - components:
     - layout_properties: {grid_position: 'MMUCMQ,NIZPAD'}
-      name: label_3
-      properties: {align: right, bold: true, font_size: 16, text: 'Enter Quartz values separated by commas ( , ) :'}
+      name: AaQuartz
+      properties:
+        align: right
+        bold: true
+        font_size: 16
+        role: input-prompt
+        spacing:
+          padding: [19, null, null, null]
+        text: 'Enter Quartz values separated by commas ( , ) :'
       type: Label
     - components:
-      - event_bindings: {show: Quartz_show}
-        layout_properties: {grid_position: 'FMIVCA,LOPVMH'}
+      - layout_properties: {grid_position: 'SCXHZI,WJGBVX'}
         name: Quartz
-        properties:
-          spacing:
-            padding: [0, null, 0, null]
-          spacing_above: none
-          spacing_below: none
-          text: ''
-        type: Label
+        properties: {align: center, hide_text: false, placeholder: Quartz, spacing_above: none, spacing_below: none, text: '', type: text}
+        type: TextBox
       layout_properties: {grid_position: 'MMUCMQ,EWMAFM'}
       name: outlined_card_5
       properties: {role: outlined-card, spacing_above: none, spacing_below: none}
       type: ColumnPanel
     - layout_properties: {grid_position: 'VERFHB,IAMXAI'}
-      name: label_4
-      properties: {align: right, bold: true, font_size: 16, spacing_above: medium, text: 'Enter Feldspar values separated by commas ( , ) :'}
+      name: AaFeldspar
+      properties:
+        align: right
+        bold: true
+        font_size: 16
+        role: input-prompt
+        spacing:
+          padding: [19, null, null, null]
+        spacing_above: medium
+        text: 'Enter Feldspar values separated by commas ( , ) :'
       type: Label
     - components:
-      - event_bindings: {show: Feldspar_show}
-        layout_properties: {grid_position: 'XZJIXW,XHWYFJ'}
+      - layout_properties: {grid_position: 'NJFQFX,CCIYED'}
         name: Feldspar
-        properties:
-          spacing:
-            padding: [0, null, 0, null]
-          spacing_above: none
-          spacing_below: none
-        type: Label
+        properties: {align: center, placeholder: Feldspar, spacing_above: none, spacing_below: none, type: text}
+        type: TextBox
       layout_properties: {grid_position: 'VERFHB,ZEPFMB'}
       name: outlined_card_6
       properties: {role: outlined-card}
       type: ColumnPanel
     - layout_properties: {grid_position: 'YYWVPP,PYASYM'}
-      name: label_5
-      properties: {align: right, bold: true, font_size: 16, text: 'Enter Lithics values separated by commas ( , ) :'}
+      name: AaLithics
+      properties:
+        align: right
+        bold: true
+        font_size: 16
+        role: input-prompt
+        spacing:
+          padding: [18, null, 6, null]
+        text: 'Enter Lithics values separated by commas ( , ) :'
       type: Label
     - components:
-      - event_bindings: {show: Lithics_show}
-        layout_properties: {grid_position: 'ORGKDW,PVAQAN'}
+      - event_bindings: {pressed_enter: eaftada.tasin69@gmail.com}
+        layout_properties: {grid_position: 'KKCYTH,MIPYPD'}
         name: Lithics
-        properties:
-          spacing:
-            padding: [0, null, 0, null]
-          spacing_above: none
-          spacing_below: none
-        type: Label
+        properties: {align: center, italic: false, placeholder: Lithics, type: text}
+        type: TextBox
       layout_properties: {grid_position: 'YYWVPP,IFPPIC'}
       name: outlined_card_7
       properties:
@@ -99,10 +106,15 @@ components:
           padding: [10, null, 0, null]
         spacing_below: none
       type: ColumnPanel
-    - event_bindings: {click: SubmitButton_click}
+    - data_bindings:
+      - {code: '', property: border, writeback: false}
+      event_bindings: {click: SubmitButton_click}
       layout_properties: {grid_position: 'FCPHYT,FSRCIL'}
       name: SubmitButton
       properties:
+        background: theme:Primary Container
+        font: ''
+        font_size: 18
         role: outlined-button
         spacing:
           padding: [8, null, null, null]
@@ -117,7 +129,7 @@ components:
       role: outlined-card
       spacing:
         padding: [null, null, null, 0]
-      visible: false
+      visible: true
     type: ColumnPanel
   layout_properties: {slot: default}
   name: content_panel

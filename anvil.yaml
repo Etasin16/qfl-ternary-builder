@@ -1,4 +1,19 @@
 allow_embedding: false
+db_schema:
+  files:
+    client: none
+    columns:
+    - admin_ui: {order: 0, width: 200}
+      name: path
+      type: string
+    - admin_ui: {order: 1, width: 200}
+      name: file
+      type: media
+    - admin_ui: {order: 2, width: 200}
+      name: file_version
+      type: string
+    server: full
+    title: Files
 dependencies: []
 metadata: {description: 'This web application enables geologists and researchers to upload sedimentary rock composition data and automatically plot it on a QFL ternary diagram (Quartz–Feldspar–Lithic fragments). It assists in the classification of sandstones and provides insights into provenance and tectonic settings.  Key Features:  📤 Upload compositional data (CSV, Excel)  📊 Auto-generate QFL ternary diagrams  🧭 Classify samples based on standard sandstone types  🔍 Explore provenance and tectonic implications  📁 Export diagrams and analysis as images or reports  🔐 Optional user login to save and manage datasets  Ideal for geologists, sedimentologists, and students conducting petrographic analysis and tectonic studies', logo_img: 'asset:ElytraLab 511x511.jpg', title: QFL Ternary Builder - By Elytra Lab}
 name: QFL Ternary Builder
@@ -13,5 +28,8 @@ services:
 - client_config: {}
   server_config: {}
   source: /runtime/services/tables.yml
+- client_config: {}
+  server_config: {file_table: files}
+  source: /runtime/services/anvil/files.yml
 startup: {module: QFL, type: form}
 startup_form: null
