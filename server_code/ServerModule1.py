@@ -24,7 +24,6 @@ import mpltern
 @anvil.server.callable
 def hello():
   return "Hello from Render!"
-anvil.server.wait_forever()
 
 @anvil.server.callable
 def clean_commas(input_string):
@@ -221,4 +220,6 @@ def extract_QFL_from_csv(file):
   AaL_str = ', '.join(l_vals)
 
   return AaQ_str, AaF_str, AaL_str
+
+anvil.server.wait_forever()
 
