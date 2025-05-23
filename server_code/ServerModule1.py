@@ -1,5 +1,5 @@
 import anvil.server
-anvil.server.connect("JZOCNSMKQ47PWJCHFIFMA7JI-GNGZTW2B2JR4ERZQ")
+anvil.server.connect("server_JZOCNSMKQ47PWJCHFIFMA7JI-GNGZTW2B2JR4ERZQ")
 import anvil.files
 from anvil.files import data_files
 import anvil.tables as tables
