@@ -1,9 +1,10 @@
+import anvil.server
+anvil.server.connect("server_NGQIDDMQD2JTRYHW7QCQFG2G-GNGZTW2B2JR4ERZQ")
 import anvil.files
 from anvil.files import data_files
 import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
-import anvil.server
 import anvil.media
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -20,6 +21,12 @@ import mpltern
 # def say_hello(name):
 #   print("Hello, " + name + "!")
 #   return 42
+@anvil.server.callable
+def hello():
+  return "Hello from Render!"
+
+anvil.server.wait_forever()
+
 @anvil.server.callable
 def clean_commas(input_string):
   cleaned_string = ""
@@ -219,9 +226,4 @@ def extract_QFL_from_csv(file):
 
   return AaQ_str, AaF_str, AaL_str
 
-anvil.server.connect("server_NGQIDDMQD2JTRYHW7QCQFG2G-GNGZTW2B2JR4ERZQ")
-@anvil.server.callable
-def hello():
-  return "Hello from Render!"
 
-anvil.server.wait_forever()
