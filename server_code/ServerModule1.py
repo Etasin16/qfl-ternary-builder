@@ -35,12 +35,25 @@ def clean_commas(input_string):
   return cleaned_string
 
 @anvil.server.callable
-def DataFrm(d1,d2,d3):
+def DataFrm1(d1,d2,d3):
   # Creating dataframe using inputed data
   df = pd.DataFrame({'Quartz': d1, 'Feldspar': d2, 'Lithics': d3})
   # calculation
   df['Total'] = df['Quartz'] + df['Feldspar'] + df['Lithics']
   
+  df['%Q'] =  df['Quartz'] / df['Total'] * 100
+  df['%F'] =  df['Feldspar'] / df['Total'] * 100
+  df['%L'] =  df['Lithics'] / df['Total'] * 100
+  df = df.round(2)
+  return df.to_dict(orient='records')
+
+@anvil.server.callable
+def DataFrm(d1,d2,d3):
+  # Creating dataframe using inputed data
+  df = pd.DataFrame({'Quartz': d1, 'Feldspar': d2, 'Lithics': d3})
+  # calculation
+  df['Total'] = df['Quartz'] + df['Feldspar'] + df['Lithics']
+
   df['%Q'] =  df['Quartz'] / df['Total'] * 100
   df['%F'] =  df['Feldspar'] / df['Total'] * 100
   df['%L'] =  df['Lithics'] / df['Total'] * 100
@@ -161,7 +174,7 @@ def ModelProvenence(d1,d2,d3):
   ax.plot(df['%Q'], df['%F'], df['%L'], 'ko', label='Data Points') # 'ko' means black circles
 
   # legend and griding
-  ax.legend(fontsize='small',loc='upper left', bbox_to_anchor=(0.9, 1))
+  ax.legend(fontsize='small',loc='upper left', bbox_to_anchor=(0.8, 1))
   ax.grid(True, which='major', linestyle='--', linewidth=0.5, color='gray')
 
   file_path = "/tmp/ternary_plot_PROV.png"
@@ -172,3 +185,36 @@ def ModelProvenence(d1,d2,d3):
     img_bytes = f.read()
 
   return anvil.BlobMedia("image/png", img_bytes, name="ternary_plot_PROV.png")
+
+@anvil.server.callable
+def extract_QFL_from_csv(file):
+  # Step 1: Get CSV contents as string
+  csv_str = file.get_bytes().decode('utf-8')
+
+  # Step 2: Split into lines
+  lines = csv_str.strip().split('\n')
+  headers = lines[0].split(',')
+
+  # Step 3: Get column indexes
+  try:
+    q_idx = headers.index('Quartz')
+    f_idx = headers.index('Feldspar')
+    l_idx = headers.index('Lithics')
+  except ValueError as e:
+    return f"ERROR: Missing required column: {e}"
+
+    # Step 4: Parse values into separate lists
+  q_vals, f_vals, l_vals = [], [], []
+  for line in lines[1:]:
+    cells = line.split(',')
+    if len(cells) >= max(q_idx, f_idx, l_idx) + 1:
+      q_vals.append(cells[q_idx].strip())
+      f_vals.append(cells[f_idx].strip())
+      l_vals.append(cells[l_idx].strip())
+
+    # Step 5: Create comma-separated strings
+  AaQ_str = ', '.join(q_vals)
+  AaF_str = ', '.join(f_vals)
+  AaL_str = ', '.join(l_vals)
+
+  return AaQ_str, AaF_str, AaL_str
