@@ -219,7 +219,7 @@ def extract_QFL_from_csv(file):
 
   return AaQ_str, AaF_str, AaL_str
 
-anvil.server.connect("server_NGQIDDMQD2JTRYHW7QCQFG2G-GNGZTW2B2JR4ERZQ")
+anvil.server.connect("JZOCNSMKQ47PWJCHFIFMA7JI-GNGZTW2B2JR4ERZQ")
 @anvil.server.callable
 def hello():
   return "Hello from Render!"
