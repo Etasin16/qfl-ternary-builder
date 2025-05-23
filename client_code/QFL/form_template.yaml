@@ -238,7 +238,7 @@ components:
       spacing_above: none
       spacing_below: none
       text: Facebook
-      url: www.facebook.com/eaftadatasin
+      url: https://www.facebook.com/eaftadatasin
     type: Link
   - layout_properties: {grid_position: 'LFLQKP,XRHZXP FZETNN,LBNAFC'}
     name: label_7
