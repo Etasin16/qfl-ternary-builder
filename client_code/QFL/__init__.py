@@ -1,5 +1,6 @@
 from ._anvil_designer import QFLTemplate
 from anvil import *
+import plotly.graph_objects as go
 import anvil.server
 import anvil.tables as tables
 import anvil.tables.query as q
@@ -22,6 +23,11 @@ class QFL(QFLTemplate):
     """This method is called when the button is clicked"""
     self.DATAtable.visible = not self.DATAtable.visible
     
+   
+    self.repeating_panel_1.items = df
+
+  def DownloadCSV_click(self, **event_args):
+    """This method is called when the button is clicked"""
     AaQ_str = self.Quartz.text
     AaF_str = self.Feldspar.text
     AaL_str = self.Lithics.text
@@ -30,15 +36,15 @@ class QFL(QFLTemplate):
       # Quartz
       cleaned_q = anvil.server.call('clean_commas', AaQ_str)
       qList = [int(x.strip()) for x in cleaned_q.split(',') if x.strip()]
-    
+
       # Feldspar
       cleaned_f = anvil.server.call('clean_commas', AaF_str)
       fList = [int(x.strip()) for x in cleaned_f.split(',') if x.strip()]
-    
+
       # Lithics
       cleaned_l = anvil.server.call('clean_commas', AaL_str)
       lList = [int(x.strip()) for x in cleaned_l.split(',') if x.strip()]
-    
+
     except ValueError:
       print("Invalid input. Please enter numerical values separated by commas.")
       exit()
@@ -46,20 +52,58 @@ class QFL(QFLTemplate):
       print("Maybe some data is missing.")
       print("Any way, Here's the output with what we have")
     max_len = min(len(qList), len(fList), len(lList))
-      
+
     qList = qList[:max_len]
     fList = fList[:max_len]
     lList = lList[:max_len]
-      
+
     if not qList or not fList or not lList:
       print("No valid data entered or uploaded.")
       exit()
     print(qList,fList,lList)
     df = anvil.server.call('DataFrm', qList, fList, lList)
     print(df)
-    self.repeating_panel_1.items = df
-
-  def DownloadCSV_click(self, **event_args):
-    """This method is called when the button is clicked"""
     csv_file = anvil.server.call('get_csv_download',df)
     anvil.media.download(csv_file)
+
+  def RAWplot_show(self, **event_args):
+    """This method is called when the Plot is shown on the screen"""
+    AaQ_str = self.Quartz.text
+    AaF_str = self.Feldspar.text
+    AaL_str = self.Lithics.text
+
+    try:
+      # Quartz
+      cleaned_q = anvil.server.call('clean_commas', AaQ_str)
+      qList = [int(x.strip()) for x in cleaned_q.split(',') if x.strip()]
+
+      # Feldspar
+      cleaned_f = anvil.server.call('clean_commas', AaF_str)
+      fList = [int(x.strip()) for x in cleaned_f.split(',') if x.strip()]
+
+      # Lithics
+      cleaned_l = anvil.server.call('clean_commas', AaL_str)
+      lList = [int(x.strip()) for x in cleaned_l.split(',') if x.strip()]
+
+    except ValueError:
+      print("Invalid input. Please enter numerical values separated by commas.")
+      exit()
+    if len(qList) != len(fList) or len(qList) != len(lList):
+      print("Maybe some data is missing.")
+      print("Any way, Here's the output with what we have")
+    max_len = min(len(qList), len(fList), len(lList))
+
+    qList = qList[:max_len]
+    fList = fList[:max_len]
+    lList = lList[:max_len]
+
+    if not qList or not fList or not lList:
+      print("No valid data entered or uploaded.")
+      exit()
+    print(qList,fList,lList)
+    df = anvil.server.call('DataFrm', qList, fList, lList)
+    
+    plot_image = anvil.server.call('ModelPlotPrimary', df)
+    self.RAWplot.source = plot_image
+
+    

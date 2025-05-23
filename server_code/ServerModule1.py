@@ -48,6 +48,38 @@ def DataFrm(d1,d2,d3):
 
 @anvil.server.callable
 def get_csv_download(dss):
-  df=dss
-  csv_str = df.to_csv(index=False)
-  return anvil.media.from_string(csv_str, 'text/csv', name= f"export_{date.today()}.csv")
+    headers = list(dss[0].keys())
+  
+    # Step 2: Create CSV rows
+    csv_rows = [",".join(headers)]  # Header row
+    for row in dss:
+      csv_rows.append(",".join(str(row[h]) for h in headers))
+    
+      # Step 3: Combine rows into single CSV string
+      csv_string = "\n".join(csv_rows)
+    return anvil.BlobMedia("text/csv", csv_string.encode("utf-8"), name="data.csv")
+
+@anvil.server.callable
+  def ModelPlotPrymary(df):
+    fig = plt.figure()
+    ax = fig.add_subplot(projection='ternary')
+
+    # setting_labels and scale
+    ax.set_tlabel("Quartz")
+    ax.set_llabel("Feldspar")
+    ax.set_rlabel("Lithics")
+
+    tick_vals = [0, 20, 40, 60, 80, 100]
+
+    ax.taxis.set_ticklabels(tick_vals)
+    ax.laxis.set_ticklabels(tick_vals)
+    ax.raxis.set_ticklabels(tick_vals)
+
+
+    # plotting data points
+    ax.plot(df['%Q'], df['%F'], df['%L'], 'ko', label='Data Points') # 'ko' means black circles
+
+    # legend and griding
+    ax.legend(fontsize='small')
+    ax.grid(True, which='major', linestyle='--', linewidth=0.5, color='gray')
+    return anvil.BlobMedia("image/png", buf.read(), name="ternary_plot.png")
