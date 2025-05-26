@@ -45,7 +45,7 @@ class QFL(QFLTemplate):
       exit()
     if len(qList) != len(fList) or len(qList) != len(lList):
       alert("Maybe some data is missing.")
-      alert("Any way, Here's the output with what we have")
+      alert("Away, Here's the output with what we have")
     max_len = min(len(qList), len(fList), len(lList))
 
     qList = qList[:max_len]
