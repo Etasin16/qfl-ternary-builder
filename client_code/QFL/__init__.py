@@ -30,15 +30,15 @@ class QFL(QFLTemplate):
     try:
       # Quartz
       cleaned_q = anvil.server.call('clean_commas', AaQ_str)
-      qList = [int(x.strip()) for x in cleaned_q.split(',') if x.strip()]
+      qList = [float(x.strip()) for x in cleaned_q.split(',') if x.strip()]
 
       # Feldspar
       cleaned_f = anvil.server.call('clean_commas', AaF_str)
-      fList = [int(x.strip()) for x in cleaned_f.split(',') if x.strip()]
+      fList = [float(x.strip()) for x in cleaned_f.split(',') if x.strip()]
 
       # Lithics
       cleaned_l = anvil.server.call('clean_commas', AaL_str)
-      lList = [int(x.strip()) for x in cleaned_l.split(',') if x.strip()]
+      lList = [float(x.strip()) for x in cleaned_l.split(',') if x.strip()]
 
     except ValueError:
       alert("Invalid input. Please enter numerical values separated by commas.")
@@ -82,15 +82,15 @@ class QFL(QFLTemplate):
     try:
       # Quartz
       cleaned_q = anvil.server.call('clean_commas', AaQ_str)
-      qList = [int(x.strip()) for x in cleaned_q.split(',') if x.strip()]
+      qList = [float(x.strip()) for x in cleaned_q.split(',') if x.strip()]
 
       # Feldspar
       cleaned_f = anvil.server.call('clean_commas', AaF_str)
-      fList = [int(x.strip()) for x in cleaned_f.split(',') if x.strip()]
+      fList = [float(x.strip()) for x in cleaned_f.split(',') if x.strip()]
 
       # Lithics
       cleaned_l = anvil.server.call('clean_commas', AaL_str)
-      lList = [int(x.strip()) for x in cleaned_l.split(',') if x.strip()]
+      lList = [float(x.strip()) for x in cleaned_l.split(',') if x.strip()]
 
     except ValueError:
       print("Invalid input. Please enter numerical values separated by commas.")
@@ -122,15 +122,15 @@ class QFL(QFLTemplate):
     try:
       # Quartz
       cleaned_q = anvil.server.call('clean_commas', AaQ_str)
-      qList = [int(x.strip()) for x in cleaned_q.split(',') if x.strip()]
+      qList = [float(x.strip()) for x in cleaned_q.split(',') if x.strip()]
 
       # Feldspar
       cleaned_f = anvil.server.call('clean_commas', AaF_str)
-      fList = [int(x.strip()) for x in cleaned_f.split(',') if x.strip()]
+      fList = [float(x.strip()) for x in cleaned_f.split(',') if x.strip()]
 
       # Lithics
       cleaned_l = anvil.server.call('clean_commas', AaL_str)
-      lList = [int(x.strip()) for x in cleaned_l.split(',') if x.strip()]
+      lList = [float(x.strip()) for x in cleaned_l.split(',') if x.strip()]
 
     except ValueError:
       alert("Invalid input. Please enter numerical values separated by commas.")
