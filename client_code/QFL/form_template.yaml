@@ -168,7 +168,8 @@ components:
       name: image_1
       properties: {height: 437.5999755859375}
       type: Image
-    - layout_properties: {grid_position: 'IRYKKK,RMLMZH'}
+    - event_bindings: {click: Downloadrawplot_click}
+      layout_properties: {grid_position: 'IRYKKK,RMLMZH'}
       name: Downloadrawplot
       properties: {role: outlined-button, text: Download}
       type: Button
@@ -180,7 +181,8 @@ components:
       name: image_2
       properties: {height: 464}
       type: Image
-    - layout_properties: {grid_position: 'QIEFBN,OADDXQ'}
+    - event_bindings: {click: Downloadprovenence_click}
+      layout_properties: {grid_position: 'QIEFBN,OADDXQ'}
       name: Downloadprovenence
       properties: {role: outlined-button, text: Download}
       type: Button

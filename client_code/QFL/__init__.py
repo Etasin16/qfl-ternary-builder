@@ -71,6 +71,8 @@ class QFL(QFLTemplate):
       self.image_2.source = plot_Prov
     else:
       alert(f"Unexpected server response: {plot_Prov}")
+
+    
     
 
   def DownloadCSV_click(self, **event_args):
@@ -163,6 +165,71 @@ class QFL(QFLTemplate):
       self.image_2.source = plot_Prov
     else:
       alert(f"Unexpected server response: {plot_Prov}")
+
+  def Downloadrawplot_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    AaQ_str = self.Quartz.text
+    AaF_str = self.Feldspar.text
+    AaL_str = self.Lithics.text
+
+    try:
+      # Quartz
+      cleaned_q = anvil.server.call('clean_commas', AaQ_str)
+      qList = [float(x.strip()) for x in cleaned_q.split(',') if x.strip()]
+
+      # Feldspar
+      cleaned_f = anvil.server.call('clean_commas', AaF_str)
+      fList = [float(x.strip()) for x in cleaned_f.split(',') if x.strip()]
+
+      # Lithics
+      cleaned_l = anvil.server.call('clean_commas', AaL_str)
+      lList = [float(x.strip()) for x in cleaned_l.split(',') if x.strip()]
+
+    except ValueError:
+      print("Invalid input. Please enter numerical values separated by commas.")
+      exit()
+    max_len = min(len(qList), len(fList), len(lList))
+
+    qList = qList[:max_len]
+    fList = fList[:max_len]
+    lList = lList[:max_len]
+    image_file = anvil.server.call("ModelPlotPrymary", qList, fList, lList )  # Pass your data here
+     # Trigger download in browser
+    anvil.media.download(image_file)
+
+  def Downloadprovenence_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    AaQ_str = self.Quartz.text
+    AaF_str = self.Feldspar.text
+    AaL_str = self.Lithics.text
+
+    try:
+      # Quartz
+      cleaned_q = anvil.server.call('clean_commas', AaQ_str)
+      qList = [float(x.strip()) for x in cleaned_q.split(',') if x.strip()]
+
+      # Feldspar
+      cleaned_f = anvil.server.call('clean_commas', AaF_str)
+      fList = [float(x.strip()) for x in cleaned_f.split(',') if x.strip()]
+
+      # Lithics
+      cleaned_l = anvil.server.call('clean_commas', AaL_str)
+      lList = [float(x.strip()) for x in cleaned_l.split(',') if x.strip()]
+
+    except ValueError:
+      print("Invalid input. Please enter numerical values separated by commas.")
+      exit()
+    max_len = min(len(qList), len(fList), len(lList))
+
+    qList = qList[:max_len]
+    fList = fList[:max_len]
+    lList = lList[:max_len]
+    image_file = anvil.server.call("ModelProvenence", qList, fList, lList )  # Pass your data here
+
+    # Trigger download in browser
+    anvil.media.download(image_file)
+    
+  
 
 
     
