@@ -1,3 +1,12 @@
+To use it, visit here
+https://shy-worthy-grass.anvil.app
+
+or Go to my website and launch app to use it, here
+https://etasin16.github.io
+
+
+
+
 # About This [Anvil](https://anvil.works/?utm_source=github:app_README) App
 
 ### Build web apps with nothing but Python.
