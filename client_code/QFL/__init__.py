@@ -23,6 +23,7 @@ class QFL(QFLTemplate):
     """This method is called when the button is clicked"""
     self.DATAtable.visible = not self.DATAtable.visible
     self.PlotCard.visible = not self.PlotCard.visible
+    self.InputArea.visible = not self.InputArea.visible
     AaQ_str = self.Quartz.text
     AaF_str = self.Feldspar.text
     AaL_str = self.Lithics.text
